@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.15/tailwind.min.css"
+    integrity="sha512-braXHF1tCeb8MzPktmUHhrjZBSZknHvjmkUdkAbeqtIrWwCchhcpUeAf2Sq3yIq1Q1x5PlroafjceOUbIE3Q5g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Font awesome -->
+<!-- Axios -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js" integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../css/shop.css">
+</head>
+<body>
+    <header class=""  id="navbar">
+        <div class="container h-20">
+            <span class="logo text-xl">Cyperphone</span>
+            <nav id="navbar-item">
+                <button class="navbar-toggle" type="button">
+                    <span><i class="fa fa-bars"></i></span>
+                </button>
+                <ul class="text-sm space-x-10 flex justify-end" id="menu">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="../admin/admin.html">Admin</a></li>
+                    <li class="active"><a  href="#">Shop</a></li>
+                    <li>
+                        <a role="button" class="js-toggle-cart" onclick="showCart()">
+                            <div class="relative">
+                                <i class="fa-solid fa-xl fa-shopping-cart"></i>
+                                <span class="absolute bg-white badge" id="cartCount">0</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+   <div class="banner py-10">
+        <div class="container py-10 grid lg:grid-cols-2 md:grid-cols-1">
+            <div class="content-banner">
+                <h5 class="text-white display-4 my-4">Galaxy S22｜S22+</h5>
+                <div class="flex star-rating mb-10 space-x-2">
+                    <a href=""><i class="fa fa-star"></i></a>
+                    <a href=""><i class="fa fa-star"></i></a>
+                    <a href=""><i class="fa fa-star"></i></a>
+                    <a href=""><i class="fa fa-star"></i></a>
+                    <a href=""><i class="fa fa-star-half-alt"></i></a>
+                </div>
+                <p class="text-yellow-50 h5 aa pb-3 mb-10">Get select Galaxy Buds2 or Buds Live on us with Galaxy S22+. Plus, get up to $700 enhanced trade-in credit. For a limited time. Get hands on with the S22 and S22+. See in AR >></p>
+                <h3 class="mb-10 text-white">1325$</h3>
+                <div class="flex btnFind ">
+                    <a href="" class="text-white"><i class="fa fa-caret-square-right mr-2" ></i>Find out more!</a>
+                </div>
+            </div>
+            <div class="img-banner md:pt-5">
+                <img src="../image/s22.png" alt="">
+            </div>
+        </div>
+   </div>
+   <section class="main-shop">
+    <div class="container pb-12 mb-12">
+        <div class="container">
+            <div class="my-12">
+                <div class="form-group">
+                    <select name="" id="locHang" class="w-48 mb-5 p-3" onclick="fillType()">
+                        <option value="all">All Brands</option>
+                        <option value="loai1">Iphone</option>
+                        <option value="loai2">Samsung</option>
+                    </select>    
+                </div>
+                <div class="lg:grid-cols-4 grid gap-4 md:grid-cols-2 grid-cols-1"  id="bodySanPham">
+                </div>
+            </div>
+        </div>
+   </div>   
+   </section>
+   <div class="meh">
+        <div class="cart is-hidden" id="cart">
+            <div class="cart-overplay" onclick="showCart()"></div>
+            <div class="cart-contents">
+                <div class="cart-products p-6">
+                    <h2 class="font-medium">Shopping Cart</h2>
+                    <p class="microcopy mb-4">An overview of your selected products.</p>
+                    <div class="product" id="cartList">
+                    </div>
+                </div>
+                <div class="cart-total p-6">
+                    <table class="totals">
+                        <tbody>
+                            <tr>
+                                <th class="font-medium">Subtotal</th>
+                                <th id="subTotal" class="text-black">$0</th>
+                            </tr>
+                            <tr>
+                                <th class="font-medium">
+                                    Shipping
+                                    <small>(estimated)</small>
+                                </th>
+                                <th id="shipping" class="font-medium">$0</th>
+                            </tr>
+                            <tr>
+                                <th class="font-medium">
+                                    Tax
+                                    <small>(estimated)</small>
+                                </th>
+                                <th id="tax" class="font-medium">$0</th>
+                            </tr>
+                            <tr>
+                                <th class="text-black">Total</th>
+                                <th id="priceTotal" class="text-black">$0</th>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2" class="p-3">
+                                    <small>Estimations based on New York, United States</small>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="form-footer mt-6">
+                        <button type="button" class="text-white bg-blue-800 font-medium text-sm px-5 py-2.5 " onclick="showCart()">Continue Shopping</button>
+                        <button type="button" class="text-white bg-red-700 font-medium text-sm px-5 py-2.5 " onclick="EmptyCart()">
+                            <i class="fa-solid fa-trash me-2 mr-1"></i>Empty Cart
+                        </button>
+                        <button type="button" class="text-white bg-yellow-600 font-medium text-sm px-5 py-2.5 " onclick="payNow()">Pay Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+   <!-- Sweetalert2 -->
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script type="module" src="./shop.js"></script>
+</body>
+</html>

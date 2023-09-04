@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.15/tailwind.min.css"
+    integrity="sha512-braXHF1tCeb8MzPktmUHhrjZBSZknHvjmkUdkAbeqtIrWwCchhcpUeAf2Sq3yIq1Q1x5PlroafjceOUbIE3Q5g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Axios  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js" integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+    <header class="top-0 left-0 w-full">
+        <div class="container h-20">
+            <span class="logo text-xl">Cyperphone</span>
+            <nav id="navbar-item">
+              <button class="navbar-toggle" type="button">
+                <span><i class="fa fa-bars"></i></span>
+              </button>
+                <ul class="text-sm space-x-10 flex justify-end" id="menu">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a class="active" href="../cyberphone/admin/admin.html">Admin</a></li>
+                    <li><a href="../shop/shop.html">Shop</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container py-12 content-wrap">
+        <main role="main" class="mt-12">
+            <div class="phone-banner flex justify-between py-3 px-2">
+                <h3 class="text-white mb-2">Phone Management</h3>
+                <div class="text-right">
+                    <button class="btn-banner" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="fa-solid fa-circle-plus me-2"></i>
+                        Add Phone
+                    </button>
+                </div>
+            </div>
+            <div class="table-reponsive" style="overflow-x: auto;">
+                <table class="w-full table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th class="w-2/6">Photo</th>
+                            <th>Discription</th>
+                            <th>
+                                <em class="fa fa-cog"></em>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablephone"></tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <div class="modal fade" id="exampleModal" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="head-form mb-0">
+              <h3 id="header-title">Phone Management</h3>
+            </div>
+  
+            <!-- Modal Header -->
+            <!-- 	<div class="modal-header">
+            <h4 class="modal-title" id="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div> -->
+  
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form role="form" id="formPhone">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+                    </div>
+                    <input type="text" name="id" id="id" class="form-control input-sm" placeholder="">
+                  </div>
+                  <span class="sp-thongbao" id="tbid">‍</span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                    </div>
+                    <input type="text" name="name" id="name" class="form-control input-sm" placeholder="Phone name">
+                  </div>
+                  <span class="sp-thongbao" id="tbname">‍</span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa-regular fa-dollar-sign"></i></span>
+                    </div>
+                    <input type="text" name="name" id="price" class="form-control input-sm" placeholder="Price">
+                  </div>
+                  <span class="sp-thongbao" id="tbprice">‍</span>
+                </div>
+  
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa-solid fa-mobile-screen"></i></span>
+                    </div>
+                    <input type="text" name="email" id="screen" class="form-control input-sm" placeholder="Screen">
+                  </div>
+  
+                  <span class="sp-thongbao" id="tbscreen">‍</span>
+                </div>
+  
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa-solid fa-camera"></i></span>
+                    </div>
+                    <input type="text" name="name" id="backCam" class="form-control" placeholder="Back Camera">
+                  </div>
+  
+                  <span class="sp-thongbao" id="tbbackCam">‍</span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa-solid fa-camera"></i></span>
+                    </div>
+                    <input type="text" name="name" id="frontCam" class="form-control" placeholder="Front Camera">
+                  </div>
+  
+                  <span class="sp-thongbao" id="tbfrontCam">‍</span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa-solid fa-link"></i></span>
+                    </div>
+                    <input type="text" name="name" id="img" class="form-control" placeholder="Image link">
+                  </div>
+                  <span class="sp-thongbao" id="tbimg">‍</span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa-solid fa-comment"></i></span>
+                    </div>
+                    <input type="text" name="name" id="desc" class="form-control" placeholder="Description">
+                  </div>
+                  <span class="sp-thongbao" id="tbdesc">‍</span>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa-solid fa-signature"></i></span>
+                    </div>
+                    <select class="form-control" name="chucvu" id="type">
+                      <option selected="" disabled="">Select brand</option>
+                      <option value="Iphone">Apple</option>
+                      <option value="Samsung">Samsung</option>
+                    </select>
+                  </div>
+  
+                  <span class="sp-thongbao" id="tbtype">‍</span>
+                </div>
+            
+              </form>
+            </div>
+  
+            <!-- Modal footer -->
+            <div class="modal-footer" id="modal-footer">
+              <button type="button" class="btn btn-primary" id="btnAddPhone" style="display: inline-block;"  onclick="addProduct()">
+                Add Phone
+              </button>
+              <button id="btnUpdate" type="button" class="btn btn-primary" style="display: none;" onclick="updateProduct()">
+                Update Phone
+              </button>
+              <button id="btnClose" type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="./admin.js"></script>
+</body>
+</html>
